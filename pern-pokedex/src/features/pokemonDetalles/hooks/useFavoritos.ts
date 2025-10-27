@@ -15,6 +15,17 @@ const useFavoritos = () => {
   });
 
   const agregar = useMutation({
+    mutationFn: async (favoritos: number[]) => {
+      const response = await api.post("favoritos", favoritos.map(a => ({ pokemonId: a })));
+      return response.data;
+    },
+  });
+
+
+  
+{/*
+  
+  const agregar = useMutation({
     mutationFn: async (nuevosFavoritos: number[]) => {
       const response = await api.post(
         "favorito",
@@ -22,7 +33,7 @@ const useFavoritos = () => {
       );
       return response.data;
     },
-  });
+  }); */}
 
   const toggleFav = (pokemon: Pokemon) => {
     setFavs((prev) => {
